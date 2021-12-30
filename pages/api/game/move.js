@@ -5,7 +5,8 @@ const { move, status, moves, aiMove, getFen } = jsChessEngine
 export default function handler(req, res) {
   if (req.method == 'POST') {
     const game = new Chess();
-    game.load_pgn(req.body)
+    // @todo: respond with error if failed to load pgn
+    game.load_pgn(req.body);
     const fen = game.fen();
     const calculatedMove = aiMove(fen);
     const normalizedMove = {
